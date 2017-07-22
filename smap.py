@@ -9,10 +9,14 @@ spool = None
 
 def identified(ip, port, service):
     print ip, port, service
+    with open('services.txt', 'a+') as outfile:
+        outfile.write('%s:%s:%s\n' % (ip,port,service))
 
 def sscan(ip, port):
     global spool
-    spool.spawn(inspection.recogn,ip, port, callback=identified)    
+    spool.spawn(inspection.recogn,ip, port, callback=identified)  
+    with open('openports.txt', 'a+') as outfile:
+        outfile.write('%s:%s\n' % (ip,port))  
 
 def scan(sip, eip, ports=[], spoolsize=100, ppoolsize=100, t_c=5):
     global spool
