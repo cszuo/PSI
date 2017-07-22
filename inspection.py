@@ -254,7 +254,6 @@ def recogn(ip, port, debug = False, callback=None):
             pass
     if service in ['ssl', 'http'] :
         if ishttps(ip, port) == 'http':
-            return 'https'
+            service = 'https'
     if callback!=None: callback(ip,port,service)
     return service
-
